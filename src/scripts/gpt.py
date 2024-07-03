@@ -2,6 +2,7 @@ import openai
 import logging
 from datetime import datetime
 import time
+import os
 
 class QueryGPT():
 
@@ -14,6 +15,11 @@ class QueryGPT():
         
         openai.api_key = self.__open_ai_api_key
         
+        # Ensure the 'logs' directory exists
+        log_dir = 'logs'
+        if not os.path.exists(log_dir):
+            os.makedirs(log_dir)
+
         # Create log file
         logging.basicConfig(filename=f'logs/{datetime.now().strftime("%Y%m%d%H%M%S")}_chatgpt.log', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(message)s')
 
